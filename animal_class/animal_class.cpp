@@ -6,41 +6,41 @@ using namespace std;
 class Animal
 {
 private:
-    string name;
-    int age;
-    int hp;
-    int hunger;
-    int hygiene;
+    string name_;
+    int age_;
+    int hp_;
+    int hunger_;
+    int hygiene_;
 
 public:
     void setAnimal(void)
     {
         cout << "Name : ";
-        cin >> name;
-        age = 100;
-        hp = 100;
-        hunger = 100;
-        hygiene = 100;
+        cin >> name_;
+        age_ = 100;
+        hp_ = 100;
+        hunger_ = 100;
+        hygiene_ = 100;
 
-        cout << endl << "- " << name << endl
-            << "Age : " << age << endl
-            << "H.P. : " << hp << endl
-            << "Hunger : " << hunger << endl
-            << "Hygiene : " << hygiene << endl;
+        cout << endl << "- " << name_ << endl
+            << "Age : " << age_ << endl
+            << "H.P. : " << hp_ << endl
+            << "Hunger : " << hunger_ << endl
+            << "Hygiene : " << hygiene_ << endl;
     }
     
     void increaseHygiene(int var)
     {
-        if (hygiene + var < 100)
-            hygiene += var;
+        if (hygiene_ + var < 100)
+            hygiene_ += var;
     }
     void showStat(void)
     {
-        cout << endl << "- " << name << endl
-            << "Age : " << age << endl
-            << "H.P. : " << hp << endl
-            << "Hunger : " << hunger << endl
-            << "Hygiene : " << hygiene << endl;
+        cout << endl << "- " << name_ << endl
+            << "Age : " << age_ << endl
+            << "H.P. : " << hp_ << endl
+            << "Hunger : " << hunger_ << endl
+            << "Hygiene : " << hygiene_ << endl;
     }
 };
 
