@@ -1,11 +1,13 @@
 #include <iostream>
 
+using namespace std;
+
 class Point
 {
     int x, y;
 
 public:
-    point(int pos_x, pos_y);
+    void point(int pos_x, int pos_y);
 };
 
 class Geometry
@@ -13,8 +15,8 @@ class Geometry
     Point* point_arr[100]; // 점 100개를 보관
 
 public:
-    geometry(Point **point_list);
-    geometry();
+    void geometry(Point **point_list);
+    void geometry(void);
 
     void addPoint(const Point &point);
     void printDist();   // 점 간의 거리 표시
@@ -24,5 +26,7 @@ public:
 
 int main(void)
 {
+    cout << "hi zz" << endl;
+
     return 0;
 }

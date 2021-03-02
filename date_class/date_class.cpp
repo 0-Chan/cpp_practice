@@ -14,6 +14,22 @@ public:
     void AddYear(int inc);
 
     void ShowDate(void);
+    int getTotalDayofMonth(int year, int month);
+
+    Date()
+    {
+        std::cout << "Default 생성자" << std::endl;
+        year_= 2021;
+        month_ = 1;
+        day_ = 1;
+    }
+
+    Date(int year, int month, int day)
+    {
+        year_ = year;
+        month_ = month;
+        day_ = day;
+    }
 };
 
 void Date::SetDate(int year, int month, int day)
@@ -25,54 +41,18 @@ void Date::SetDate(int year, int month, int day)
 
 void Date::AddDay(int inc)
 {
-    day_ += inc;
+      while (true) {
+    int current_month_total_days = getTotalDayofMonth(year_, month_);
 
-    if (month_ < 7)
-    {
-        if (month_ % 2 == 1)
-        {
-            if (day_ > 31)
-            {
-                day_ -= 31;
-                AddMonth(1);
-            }
-        }
-        else if (month_ % 2 == 0)
-        {
-            if (month_ == 2)
-            {
-                if (day_ > 28)
-                {
-                    day_ -= 28;
-                    AddMonth(1);
-                }
-            }
-            else if (day_ > 30)
-            {
-                day_ -= 30;
-                AddMonth(1);
-            }
-        }
-        else if (month_ > 7)
-        {
-            if (month_ % 2 == 0)
-            {
-                if (day_ > 31)
-                {
-                    day_ -= 31;
-                    AddMonth(1);
-                }
-                else if (month_ % 2 == 1)
-                {
-                    if (day_ > 30)
-                    {
-                        day_ -= 30;
-                        AddMonth(1);
-                    }
-                }
-            }
-        }
+    if (day_ + inc <= current_month_total_days) {
+      day_ += inc;
+      return;
+    } else {
+      inc -= (current_month_total_days - day_ + 1);
+      day_ = 1;
+      AddMonth(1);
     }
+  }
 }
 
 void Date::AddMonth(int inc)
@@ -96,6 +76,21 @@ void Date::ShowDate()
         << year_ << ". "
         << month_ << "."
         << day_ << std::endl << std::endl;
+}
+
+int getTotalDayofMonth(int year, int month)
+{
+    static int last_day[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    int total_day = last_day[month - 1];
+    if (month == 2)
+    {
+        if (year % 4 == 0)
+        {
+            return 29;
+        }
+    }
+    return total_day;
 }
 
 int main(void)

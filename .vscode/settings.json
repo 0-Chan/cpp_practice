@@ -1,0 +1,6 @@
+{
+    "cmake.sourceDirectory": "${workspaceFolder}/geometry_class",
+    "files.associations": {
+        "ostream": "cpp"
+    }
+}
