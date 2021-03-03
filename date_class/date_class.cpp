@@ -8,70 +8,57 @@ private:
     int day_;
 
 public:
-    void SetDate(int year, int month, int day);
     void AddDay(int inc);
     void AddMonth(int inc);
-    void AddYear(int inc);
-
+    void AddYear(int inc);    
     void ShowDate(void);
-};
-
-void Date::SetDate(int year, int month, int day)
-{
-    year_ = year;
-    month_ = month;
-    day_ = day;
-}
-
-void Date::AddDay(int inc)
-{
-    day_ += inc;
-
-    if (month_ < 7)
+    int getTotalDayofMonth(int year_, int month_)
     {
-        if (month_ % 2 == 1)
-        {
-            if (day_ > 31)
-            {
-                day_ -= 31;
-                AddMonth(1);
-            }
-        }
-        else if (month_ % 2 == 0)
+        static int last_day[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+        int total_day = last_day[month_ - 1];
+
+        if (year_ % 4 == 0)
         {
             if (month_ == 2)
             {
-                if (day_ > 28)
-                {
-                    day_ -= 28;
-                    AddMonth(1);
-                }
-            }
-            else if (day_ > 30)
-            {
-                day_ -= 30;
-                AddMonth(1);
+                total_day += 1;
             }
         }
-        else if (month_ > 7)
-        {
-            if (month_ % 2 == 0)
-            {
-                if (day_ > 31)
-                {
-                    day_ -= 31;
-                    AddMonth(1);
-                }
-                else if (month_ % 2 == 1)
-                {
-                    if (day_ > 30)
-                    {
-                        day_ -= 30;
-                        AddMonth(1);
-                    }
-                }
-            }
-        }
+        return total_day;
+    }
+    Date()
+    {
+        std::cout << "Default 생성자" << std::endl;
+        year_ = 2021;
+        month_ = 1;
+        day_ = 1;
+    }
+
+    Date(int year, int month, int day)
+    {
+        std::cout << "생성자 오버로딩" << std::endl;
+        year_ = year;
+        month_ = month;
+        day_ = day;
+    }
+};
+
+
+void Date::AddDay(int inc)
+{
+    int total_day = getTotalDayofMonth(year_, month_);
+
+    day_ += inc;
+
+    if (day_ + inc < total_day)
+    {
+        return;
+    }
+    else
+    {
+        day_ -= total_day;
+        AddMonth(1);
     }
 }
 
@@ -98,10 +85,11 @@ void Date::ShowDate()
         << day_ << std::endl << std::endl;
 }
 
-int main(void)
+int main()
 {
-    Date date;
-    date.SetDate(2021, 2, 25);
+//    Date date(2021, 2, 25);       implicit constructor
+    Date date = Date();
+
     date.ShowDate();
     date.AddDay(10);
     date.ShowDate();
