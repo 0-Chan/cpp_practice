@@ -8,51 +8,58 @@ private:
     int day_;
 
 public:
-    void SetDate(int year, int month, int day);
     void AddDay(int inc);
     void AddMonth(int inc);
-    void AddYear(int inc);
-
+    void AddYear(int inc);    
     void ShowDate(void);
-    int getTotalDayofMonth(int year, int month);
+    int getTotalDayofMonth(int year_, int month_)
+    {
+        static int last_day[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
+        int total_day = last_day[month_ - 1];
+
+        if (year_ % 4 == 0)
+        {
+            if (month_ == 2)
+            {
+                total_day += 1;
+            }
+        }
+        return total_day;
+    }
     Date()
     {
-        std::cout << "Default ìƒì„±ìž" << std::endl;
-        year_= 2021;
+        std::cout << "Default »ý¼ºÀÚ" << std::endl;
+        year_ = 2021;
         month_ = 1;
         day_ = 1;
     }
 
     Date(int year, int month, int day)
     {
+        std::cout << "»ý¼ºÀÚ ¿À¹ö·Îµù" << std::endl;
         year_ = year;
         month_ = month;
         day_ = day;
     }
 };
 
-void Date::SetDate(int year, int month, int day)
-{
-    year_ = year;
-    month_ = month;
-    day_ = day;
-}
 
 void Date::AddDay(int inc)
 {
-      while (true) {
-    int current_month_total_days = getTotalDayofMonth(year_, month_);
+    int total_day = getTotalDayofMonth(year_, month_);
 
-    if (day_ + inc <= current_month_total_days) {
-      day_ += inc;
-      return;
-    } else {
-      inc -= (current_month_total_days - day_ + 1);
-      day_ = 1;
-      AddMonth(1);
+    day_ += inc;
+
+    if (day_ + inc < total_day)
+    {
+        return;
     }
-  }
+    else
+    {
+        day_ -= total_day;
+        AddMonth(1);
+    }
 }
 
 void Date::AddMonth(int inc)
@@ -78,25 +85,11 @@ void Date::ShowDate()
         << day_ << std::endl << std::endl;
 }
 
-int getTotalDayofMonth(int year, int month)
+int main()
 {
-    static int last_day[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+//    Date date(2021, 2, 25);       implicit constructor
+    Date date = Date();
 
-    int total_day = last_day[month - 1];
-    if (month == 2)
-    {
-        if (year % 4 == 0)
-        {
-            return 29;
-        }
-    }
-    return total_day;
-}
-
-int main(void)
-{
-    Date date;
-    date.SetDate(2021, 2, 25);
     date.ShowDate();
     date.AddDay(10);
     date.ShowDate();
