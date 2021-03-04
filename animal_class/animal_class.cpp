@@ -1,5 +1,7 @@
-#include <iostream>
-#include <string>
+﻿// animal_class.cpp : 애플리케이션의 진입점을 정의합니다.
+//
+
+#include "animal_class.h"
 
 using namespace std;
 
@@ -28,7 +30,7 @@ public:
             << "Hunger : " << hunger_ << endl
             << "Hygiene : " << hygiene_ << endl;
     }
-    
+
     void increaseHygiene(int var)
     {
         if (hygiene_ + var < 100)
@@ -62,8 +64,8 @@ int main(void)
         switch (select_case)
         {
         case 'a':
-            cout << "Creating animal..." << endl;    
-            
+            cout << "Creating animal..." << endl;
+
             animal.setAnimal();
             create_num += 1;
 

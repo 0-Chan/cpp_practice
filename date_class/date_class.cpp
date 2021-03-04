@@ -1,6 +1,9 @@
-#include <iostream>
+ï»¿// date_class.cpp : ì• í”Œë¦¬ì¼€ì´ì…˜ì˜ ì§„ì…ì ì„ ì •ì˜í•©ë‹ˆë‹¤.
+//
 
-class Date 
+#include "date_class.h"
+
+class Date
 {
 private:
     int year_;
@@ -10,7 +13,7 @@ private:
 public:
     void AddDay(int inc);
     void AddMonth(int inc);
-    void AddYear(int inc);    
+    void AddYear(int inc);
     void ShowDate(void);
     int getTotalDayofMonth(int year_, int month_)
     {
@@ -29,7 +32,7 @@ public:
     }
     Date()
     {
-        std::cout << "Default »ı¼ºÀÚ" << std::endl;
+        std::cout << "Default ìƒì„±ì" << std::endl;
         year_ = 2021;
         month_ = 1;
         day_ = 1;
@@ -37,7 +40,7 @@ public:
 
     Date(int year, int month, int day)
     {
-        std::cout << "»ı¼ºÀÚ ¿À¹ö·Îµù" << std::endl;
+        std::cout << "ìƒì„±ì ì˜¤ë²„ë¡œë”©" << std::endl;
         year_ = year;
         month_ = month;
         day_ = day;
@@ -87,7 +90,7 @@ void Date::ShowDate()
 
 int main()
 {
-//    Date date(2021, 2, 25);       implicit constructor
+    //    Date date(2021, 2, 25);       implicit constructor
     Date date = Date();
 
     date.ShowDate();

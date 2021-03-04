@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/cody/Downloads/cpp_practice/build",
-  "command": "/bin/c++      -o CMakeFiles/geometry_class.dir/main.cpp.o -c /home/cody/Downloads/cpp_practice/geometry_class/main.cpp",
-  "file": "/home/cody/Downloads/cpp_practice/geometry_class/main.cpp"
-}
-]
